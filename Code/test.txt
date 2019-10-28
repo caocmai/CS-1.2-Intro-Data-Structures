@@ -6,3 +6,7 @@ current
 object’s
 measured
 want
+the
+value
+value
+value

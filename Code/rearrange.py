@@ -1,22 +1,20 @@
 import random
 import sys
 
-def to_random(sentence):
+def rearrange(sentence):
   split_words = sentence.split(" ")
-  new = []
+  new_sentence = []
 
   while len(split_words) > 0:
     for _ in range(len(split_words)):
       rand_index = random.randint(0, len(split_words) - 1)
-      new.append(split_words[rand_index])
+      new_sentence.append(split_words[rand_index])
       split_words.remove(split_words[rand_index])
   
-#   return (' '.join(new))
-  print(' '.join(new))
-
-
-# print(to_random("what is today's date"))
+#   return (' '.join(new_sentence))
+  print(' '.join(new_sentence))
+  # print(new_sentence)
 
 if __name__ == "__main__":
-    sentence = ' '.join(sys.argv[1:])
-    to_random(sentence)
+    sentence = " ".join(sys.argv[1:])
+    rearrange(sentence)
