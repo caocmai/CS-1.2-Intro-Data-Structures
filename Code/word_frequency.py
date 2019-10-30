@@ -1,9 +1,19 @@
-file_content = []
+import sys
 
-with open("test.txt", "r") as f:
-    # file_content = f.read().split()
-    for line in f:
-        file_content.append(line.strip())
+# file_content = []
+
+# with open("test2.txt", "r") as f_handle:
+#     # file_content = f.read().split()
+#     for line in f_handle:
+#         file_content.extend(line.split())
+
+# Or can write function
+def open_file():
+  f_handle = open("test2.txt", "r")
+  file_content = []
+  for line in f_handle:
+    file_content.extend(line.split())
+  return file_content
 
 def histogram(file_content):
     histogram = {}
@@ -27,8 +37,29 @@ def frequency(word, histogram):
         if key == word:
             return value
 
+def max_frequency(histogram):
+    max_word = None
+    max_value = 0
+    for key,value in histogram.items():
+        if value > max_value:
+            max_value = value
+            max_word = key
+    return (max_word, max_value)
+
+def total_words(histogram):
+    total = 0
+    for value in histogram.values():
+        total += value
+    return total
 
 # print(file_content)
-print(histogram(file_content))
-# print(unique_words(histogram(file_content)))
-# print(frequency("value", histogram(file_content)))
+# print(histogram(open_file()))
+# print(unique_words(histogram(open_file())))
+# print(frequency("time", histogram(open_file())))
+# print(total_words(histogram(open_file())))
+# print(max_frequency(histogram(open_file())))
+
+# if __name__ == "__main__":
+#     params = sys.argv[1:] 
+#     word = str(params[0])
+#     print(frequency(word, histogram(open_file())))
