@@ -21,6 +21,8 @@ class Listogram(list):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
+
+        # This is for tuple
         # self.tokens += count 
         # for index, word_in_list  in enumerate(self):
         #     if word_in_list[0] == word:
@@ -30,37 +32,45 @@ class Listogram(list):
         #         self.append((word, count))
         #         self.types += 1
 
-        for item in self:
-            if item[0] == word:
-                item[1] += count
+        for index, stuff in enumerate(self):
+            if stuff[0] == word:
+                stuff[1] += count
                 self.tokens += count
                 break
         else:
-            # Append the new word with count if it does not exist, and update tokens and types
             self.append([word, count])
+            self.types += 1
             self.tokens += count
-            self.types = len(self)
 
-        ## This is for tuple
-        # self.tokens += count
-        # for index, item in enumerate(self):
-        #     if item[0] == word:
-        #         self[index] = (word, item[1] + count)
+
+        # for index, word_in_list in enumerate(self):
+        #     if word_in_list[0] == word:
+        #         word_in_list[1] += count
+        #         self.tokens += count
         #         break
         # else:
-        #     self.append((word, count))
-        #     self.types += 1
+        #     # Append the new word with count if it does not exist, and update tokens and types
+        #     self.append([word, count])
+        #     self.tokens += count
+        #     self.types = len(self)
 
 
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
+
         for index, word_in_list in enumerate(self):
             if word_in_list[0] == word:
                 return word_in_list[1]
-            else:
-                return 0
+        else: 
+            return 0
+
+        # # The following also works
+        # for stuff in self:
+        #     if stuff[0] == word:
+        #         return stuff[1]
+        # return 0
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
