@@ -7,7 +7,7 @@ import sys
 #     for line in f_handle:
 #         file_content.extend(line.split())
 
-# Or can write function
+# Or can write as function
 def open_file():
   f_handle = open("test.txt", "r")
   file_content = []

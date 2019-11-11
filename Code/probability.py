@@ -2,25 +2,41 @@
 import random
 from word_frequency import open_file, histogram, frequency, total_words
 
-a = (histogram(open_file()))
+histogram = (histogram(open_file()))
 
-# a = {"one": 1, "fish": 4, "two": 1, "blue": 1, "red": 1}
+# histogram = {"one": 1, "fish": 4, "two": 1, "blue": 1, "red": 1}
 
 
 # print(frequency("the", histogram(open_file())))
 # print(frequency("of", histogram(open_file())))
 # print(total_words(histogram(open_file())))
 total_words = total_words(histogram(open_file()))
+
 print(total_words)
 
-new_list = []
-i = 1000
-while i > 0:
-  for key,value in a.items():
-    if random.randrange(total_words) < value: # randrange is total words but takes way too long 5 mins
-      i -= 1
-      new_list.append(key)
-  
+def stochastic(dic, total_words):
+  rand_num = random.randint(1, total_words)
+  # print(rand_num)
+  total_value = 0
+  for key,value in dic.items():
+    # if rand_num <= value:
+    # print("total_value", total_value)
+    if rand_num - value - total_value <= 0:
+      return key
+    else:
+      total_value += value
+
+""" THis is the same as the abovaluee """
+# def one(dic, total):
+#   rand_num = random.randint(1, total)
+#   total_value = 0
+#   for key,value in dic.items():
+#     if rand_num <= total_value:
+#       return key
+#     else:
+#       total_value += value
+
+
 # fish_count = 0
 # blue_count = 0
 # one_count = 0
@@ -43,12 +59,12 @@ while i > 0:
 of_count = 0
 the_count = 0
 for word in new_list:
-  if word == "of":
+  if word == "fish":
     of_count += 1
-  if word == "the":
+  if word == "one":
     the_count += 1
 
-print("of count", of_count)
-print("the count", the_count)
+print("fish", of_count)
+print("one", the_count)
 
 # print(new_list)

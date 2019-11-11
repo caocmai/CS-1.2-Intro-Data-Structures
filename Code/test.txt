@@ -1,12 +1,1 @@
-reading
-the
-value
-reference
-current
-object’s
-measured
-want
-the
-value
-value
-value
+one fish two fish red fish blue fish
