@@ -35,7 +35,7 @@ class Dictogram(dict):
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-        
+
         # return self.get(word, 0)
 
         # Or
@@ -47,7 +47,9 @@ class Dictogram(dict):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
-        total = sum(self.values())
+        # total = sum(self.values())
+        # These two are equavalent lines 50 and 52
+        total = self.tokens
         rand_num = random.randint(1, total)
         total_value = 0
 
