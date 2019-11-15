@@ -4,12 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Stochastic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Quote Generator</title>
 </head>
 <body>
-    {% if title %}
-    <h1>Sample text: {{ title }}</h1>
-    {% endif %}
-    <h2>{{ word }}</h2>
+    <div class="container">
+            <div class="card">
+                    <div class="card-header">
+                        {% if title %}
+                            Source Text: {{ title }}
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p>{{ word }}</p>
+                        <footer class="blockquote-footer">A possible quote by <cite title="Source Title">{{ title }}</cite></footer>
+                      </blockquote>
+                    </div>
+                  </div>
+    </div>
+
+    <div class="container words">
+        <form action="/", method="get">
+            <h4>Enter sentence length (Default: 10 words long)</h4>
+            <input id='cost' type='number' placeholder='10' name='length'/>
+            <input type="submit" name="action" value="Generate">
+        </form>
+    </div>
+
 </body>
 </html>
