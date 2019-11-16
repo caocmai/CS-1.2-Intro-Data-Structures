@@ -85,26 +85,77 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(???) Why and under what conditions?
+        Run time: O(1) because like tail, the head can be accessed in one step"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+
+        node = Node(item)
+
+        if self.head is not None:
+            node.next = self.head
+        else:
+            self.tail = node
+
+        # If head exists prepend to the head
+        self.head = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Worst case running time: O(???) Why and under what conditions?
+        Run time(Best Case): O(1), becuse if you let lucky you can find it running just once
+        Run time(Worst Case): O(n), becuase you have to go every single one"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
+
+        if self.head is not None:
+            current_node = self.head
+            while current_node is not None:
+                if quality(current_node.data) is True:
+                    return current_node.data
+                else:
+                    current_node = current_node.next
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Worst case running time: O(???) Why and under what conditions?
+        Run time(Best Case): O(1), becuse if you let lucky you can find it and delete it by running just once
+        Run time(Worst Case): O(n), becuase you have to go every single one to find it and delete"""
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
 
+        previous_node = None
+        current_node = self.head
+        found = False
+        if self.is_empty():
+            raise ValueError('Item not found: {}'.format(item))
+
+        elif self.head == self.tail: # If only one node in the list
+            if current_node.data == item:
+                self.head = None
+                self.tail = None
+            else:
+                raise ValueError('Item not found: {}'.format(item))
+        
+        else:
+            while current_node is not None:
+                if current_node.data == item:
+                    found = True
+                    if previous_node is None: # If first node is the correct one
+                        self.head = current_node.next
+                    elif current_node == self.tail: #If last node is the correct one
+                        self.tail = previous_node
+                        previous_node.next = None
+                    else:
+                        previous_node.next = current_node.next
+                previous_node = current_node
+                current_node = current_node.next
+            if found is False:
+                raise ValueError('Item not found: {}'.format(item))
 
 def test_linked_list():
     ll = LinkedList()

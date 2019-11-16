@@ -1,19 +1,27 @@
-fish_words = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
+import random
 
-histogram = {}
+corpus = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
 
-for word in range(len(fish_words) - 1):
-    if fish_words[word] not in histogram:
-        histogram[fish_words[word]] = {}
+def make_pairs(corpus):
+    for i in range(len(corpus) - 1):
+        yield (corpus[i], corpus[i + 1])
 
-print(histogram)
+pairs = make_pairs(corpus)
 
-for index in range(len(fish_words) - 1):
-    if fish_words[index] in histogram:
-        histogram[fish_words[index]][fish_words[index + 1]] = 1
-    
-    for key in histogram[fish_words[index + 1]].keys():
-        if key == fish_words[index]:
-            histogram[fish_words[index]][fish_words[index + 1]] += 1
+word_dict = {}
+for word_1, word_2 in pairs:
+    if word_1 in word_dict.keys():
+        word_dict[word_1].append(word_2)
+    else:
+        word_dict[word_1] = [word_2]
 
-print(histogram)
+first_word = random.choice(corpus)
+# while first_word.islower():
+chain = [first_word]
+
+n_words = 20
+for i in range(n_words): 
+    chain.append(random.choice(word_dict[chain[-1]]))
+
+
+print(' '.join(chain))
