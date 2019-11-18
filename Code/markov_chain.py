@@ -24,7 +24,7 @@ class Markov():
 
         return markov_chain
 
-    def walk(self, length):
+    def walk_through(self, length):
         """Randomly walk a markov chain to generate sentence"""
         temp_list = []
 
@@ -41,7 +41,7 @@ class Markov():
 
 if __name__ == '__main__':
     markov = Markov('test.txt')
-    print(markov.walk(10))
+    print(markov.walk_through(10))
 
 
 

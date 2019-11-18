@@ -1,8 +1,8 @@
 # from random import random
 import random
-from word_frequency import open_file, histogram, frequency, total_words
+from histogram import open_file, histogram, frequency, total_words
 
-histogram = (histogram(open_file()))
+histogram = (histogram(open_file('test.txt')))
 
 # histogram = {"one": 1, "fish": 4, "two": 1, "blue": 1, "red": 1}
 
@@ -10,7 +10,7 @@ histogram = (histogram(open_file()))
 # print(frequency("the", histogram(open_file())))
 # print(frequency("of", histogram(open_file())))
 # print(total_words(histogram(open_file())))
-total_words = total_words(histogram(open_file()))
+total_words = total_words(histogram)
 
 print(total_words)
 
@@ -56,15 +56,16 @@ def stochastic(dic, total_words):
 # print("one word", one_count)
 # print("two word", two_count)
 
-of_count = 0
-the_count = 0
-for word in new_list:
-  if word == "fish":
-    of_count += 1
-  if word == "one":
-    the_count += 1
+#Testing
+# of_count = 0
+# the_count = 0
+# for word in new_list:
+#   if word == "fish":
+#     of_count += 1
+#   if word == "one":
+#     the_count += 1
 
-print("fish", of_count)
-print("one", the_count)
+# print("fish", of_count)
+# print("one", the_count)
 
 # print(new_list)

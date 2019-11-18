@@ -51,13 +51,13 @@ class Dictogram(dict):
         # These two are equavalent lines 50 and 52
         total = self.tokens
         rand_num = random.randint(1, total)
-        total_value = 0
+        fence = 0
 
         for key, value in self.items():
-            if rand_num - value - total_value <= 0:
+            if rand_num - value - fence <= 0:
                 return key
             else:
-                total_value += value
+                fence += value
 
 def print_histogram(word_list):
     print()
