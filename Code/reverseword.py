@@ -1,5 +1,4 @@
 
-
 def openfile(text):
     # file_name = text
 

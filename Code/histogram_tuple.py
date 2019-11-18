@@ -3,7 +3,7 @@
 
 def open_file():
     content = []
-    f_handle = open("test3.txt", "r")
+    f_handle = open("test.txt", "r")
     for line in f_handle:
         content.extend(line.split())
     return content

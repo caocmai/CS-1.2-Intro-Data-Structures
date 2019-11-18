@@ -1,8 +1,9 @@
 # from random import random
 import random
-from word_frequency import open_file, histogram, frequency, total_words
+from histogram import open_file, histogram, frequency, total_words
 
-histogram = (histogram(open_file()))
+# Getting the histogram
+histogram = (histogram(open_file("test.txt")))
 
 total_words = total_words(histogram)
 
@@ -12,6 +13,7 @@ def stochastic(dic, total_words):
   rand_num = random.randint(1, total_words)
   # print(rand_num)
   total_value = 0
+
   for key,value in dic.items():
     # if rand_num <= value:
     # print("total_value", total_value)

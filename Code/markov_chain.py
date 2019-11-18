@@ -1,27 +1,48 @@
-import random
-
-corpus = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
-
-def make_pairs(corpus):
-    for i in range(len(corpus) - 1):
-        yield (corpus[i], corpus[i + 1])
-
-pairs = make_pairs(corpus)
-
-word_dict = {}
-for word_1, word_2 in pairs:
-    if word_1 in word_dict.keys():
-        word_dict[word_1].append(word_2)
-    else:
-        word_dict[word_1] = [word_2]
-
-first_word = random.choice(corpus)
-# while first_word.islower():
-chain = [first_word]
-
-n_words = 20
-for i in range(n_words): 
-    chain.append(random.choice(word_dict[chain[-1]]))
+from dictogram import Dictogram
+from random import choice
+from histogram import open_file
 
 
-print(' '.join(chain))
+class Markov():
+
+    def __init__(self, text_file):
+        """Initilize markov class"""
+        self.content = open_file(text_file)
+        self.markov = self.chain(self.content)
+
+    def chain(self, content):
+        """Creating markov chain"""
+        markov_chain = {}
+        for i in range(len(content)):
+            if content[i] not in markov_chain:
+                markov_chain[content[i]] = []
+            if i < len(content) - 1:
+                markov_chain[content[i]].append(content[i + 1])
+
+        for key in markov_chain:
+            markov_chain[key] = Dictogram(markov_chain[key])
+
+        return markov_chain
+
+    def walk(self, length):
+        """Randomly walk a markov chain to generate sentence"""
+        temp_list = []
+
+        temp_list.append(choice(tuple(self.markov.keys())))
+        for i in range(length - 1):
+            temp_list.append(self.markov[temp_list[i]].sample())
+
+        sentence = ""
+        for word in temp_list:
+            sentence += word + " "
+
+        return sentence
+
+
+if __name__ == '__main__':
+    markov = Markov('test.txt')
+    print(markov.walk(10))
+
+
+
+    

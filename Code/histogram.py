@@ -7,15 +7,16 @@ import sys
 #     for line in f_handle:
 #         file_content.extend(line.split())
 
-# Or can write function
-def open_file():
-  f_handle = open("test.txt", "r")
+# Or can write as function
+def open_file(text):
+  f_handle = open(text, "r")
   file_content = []
   for line in f_handle:
     file_content.extend(line.split())
   return file_content
 
 def histogram(file_content):
+    '''Get histogram with given content as input'''
     histogram = {}
     for word in file_content:
         # histogram[word] = histogram.get(word, 0) + 1
@@ -26,6 +27,7 @@ def histogram(file_content):
     return histogram
 
 def unique_words(histogram):
+    '''Find all the unique words in historgram'''
     num_unique = 0
     for value in histogram.values():
         if value == 1:
@@ -33,11 +35,13 @@ def unique_words(histogram):
     return num_unique
 
 def frequency(word, histogram):
+    '''Returns number of occurrences for a given word'''
     for key, value in histogram.items():
         if key == word:
             return value
 
 def max_frequency(histogram):
+    '''Returns most common word and number of occurrences'''
     max_word = None
     max_value = 0
     for key,value in histogram.items():
@@ -47,6 +51,7 @@ def max_frequency(histogram):
     return (max_word, max_value)
 
 def total_words(histogram):
+    '''Returns total number of words in content'''
     total = 0
     for value in histogram.values():
         total += value
