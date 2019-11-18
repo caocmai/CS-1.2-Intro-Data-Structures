@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, url_for
 import random
-from word_frequency import open_file, histogram, frequency, total_words
+from histogram import open_file, histogram, frequency, total_words
 from stochastic import stochastic
 
 app = Flask(__name__)
 
 text_title = "Sherlock Holmes"
-histogram = (histogram(open_file()))
+histogram = (histogram(open_file('test.txt')))
 total_words = total_words(histogram)
 
 @app.route('/')

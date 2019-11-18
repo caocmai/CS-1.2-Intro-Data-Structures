@@ -1,9 +1,9 @@
 # from random import random
 # this way is wayyy to slow but more accurate?
 import random
-from word_frequency import open_file, histogram, frequency, total_words
+from histogram import open_file, histogram, frequency, total_words
 
-a = (histogram(open_file()))
+a = (histogram(open_file('test.txt')))
 
 # a = {"one": 1, "fish": 4, "two": 1, "blue": 1, "red": 1}
 
@@ -12,7 +12,7 @@ a = (histogram(open_file()))
 # print(frequency("of", histogram(open_file())))
 # print(total_words(histogram(open_file())))
 
-total_words = total_words(histogram(open_file()))
+total_words = total_words(a)
 
 print(total_words)
 
