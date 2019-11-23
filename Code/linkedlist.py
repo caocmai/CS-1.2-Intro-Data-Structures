@@ -133,6 +133,7 @@ class LinkedList(object):
         previous_node = None
         current_node = self.head
         is_found = False
+
         if self.is_empty():
             raise ValueError('Item not found: {}'.format(item))
 
@@ -147,9 +148,9 @@ class LinkedList(object):
             while current_node is not None:
                 if current_node.data == item:
                     is_found = True
-                    if previous_node is None: # If first node is the correct one
+                    if previous_node is None: # If head node is the correct one
                         self.head = current_node.next
-                    elif current_node == self.tail: #If last node is the correct one
+                    elif current_node == self.tail: # If tail node is the correct one
                         self.tail = previous_node
                         previous_node.next = None
                     else:
