@@ -35,8 +35,10 @@ class LinkedList(object):
 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
+       
         Best and worst case running time: O(n) for n items in the list (length)
         because we always need to loop through all n nodes to get each item."""
+       
         items = []  # O(1) time to create empty list
         # Start at head node
         node = self.head  # O(1) time to assign new variable
@@ -55,7 +57,9 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?
+       
         Run time: O(n) because have to possibly go through all of the nodes"""
+       
         # TODO: Loop through all nodes and count one for each
 
         count = 0
@@ -70,7 +74,9 @@ class LinkedList(object):
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(???) Why and under what conditions?
+        
         Run time: O(1) because the head can be accessed in one step"""
+        
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
 
@@ -88,7 +94,9 @@ class LinkedList(object):
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?
+        
         Run time: O(1) because like tail, the head can be accessed in one step"""
+        
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
 
@@ -106,8 +114,10 @@ class LinkedList(object):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?
+        
         Run time(Best Case): O(1), becuse if you let lucky you can find it running just once
         Run time(Worst Case): O(n), becuase you have to go every single one"""
+        
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
 
@@ -123,8 +133,10 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?
+
         Run time(Best Case): O(1), becuse if you let lucky you can find it and delete it by running just once
         Run time(Worst Case): O(n), becuase you have to go every single one to find it and delete"""
+        
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
