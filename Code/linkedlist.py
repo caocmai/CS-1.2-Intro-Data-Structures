@@ -132,34 +132,33 @@ class LinkedList(object):
 
         previous_node = None
         current_node = self.head
-        found = False
+        is_found = False
         if self.is_empty():
-            raise ValueError('Item not in list: {}'.format(item))
+            raise ValueError('Item not found: {}'.format(item))
 
         elif self.head == self.tail: # If only one node in the list
             if current_node.data == item:
                 self.head = None
                 self.tail = None
             else:
-                raise ValueError('Item not in list: {}'.format(item))
+                raise ValueError('Item not found: {}'.format(item))
         
         else:
             while current_node is not None:
                 if current_node.data == item:
-                    found = True
+                    is_found = True
                     if previous_node is None: # If first node is the correct one
                         self.head = current_node.next
-                    elif current_node == self.tail: # If last node is the correct one
+                    elif current_node == self.tail: #If last node is the correct one
                         self.tail = previous_node
                         previous_node.next = None
                     else:
                         previous_node.next = current_node.next
-
-                # Similar to fibo number        
                 previous_node = current_node
                 current_node = current_node.next
-            if found is False:
-                raise ValueError('Item not in list: {}'.format(item))
+
+            if is_found is False:
+                raise ValueError('Item not found: {}'.format(item))
 
 def test_linked_list():
     ll = LinkedList()

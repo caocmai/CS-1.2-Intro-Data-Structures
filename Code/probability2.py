@@ -1,3 +1,4 @@
+# This file is just for messing around
 # from random import random
 # this way is wayyy to slow but more accurate?
 import random
