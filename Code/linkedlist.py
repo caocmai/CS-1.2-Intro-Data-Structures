@@ -39,16 +39,15 @@ class LinkedList(object):
         Best and worst case running time: O(n) for n items in the list (length)
         because we always need to loop through all n nodes to get each item."""
        
-        items = []  # O(1) time to create empty list
+        items = [] # O(1) only one step to do this
         # Start at head node
-        node = self.head  # O(1) time to assign new variable
-        # Loop until node is None, which is one node too far past tail
-        while node is not None:  # Always n iterations because no early return
-            items.append(node.data)  # O(1) time (on average) to append to list
-            # Skip to next node to advance forward in linked list
-            node = node.next  # O(1) time to reassign variable
-        # Now list contains items from all nodes
-        return items  # O(1) time to return list
+        node = self.head  # O(1) only one step to do this
+        # Loop until node is None, meaning at the end
+        while node is not None:   # O(n) loop through all of the list
+            items.append(node.data) # O(1) only one step to do this
+            # Now the node is equal to the node.next to move to the next item
+            node = node.next  # O(1) only one step to do this
+        return items   # O(1) only one step to do this
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
@@ -85,7 +84,6 @@ class LinkedList(object):
             # Appending node after tail, if tail exists
             self.tail.next = node
         else:
-            # Or creating a new one to hold item
             self.head = node
         self.tail = node
         
