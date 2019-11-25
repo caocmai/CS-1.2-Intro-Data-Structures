@@ -19,6 +19,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
+        self.count = 0 # To find the length in another way
 
         # Append given items
         if items is not None:
@@ -46,7 +47,7 @@ class LinkedList(object):
         # Loop until node is None, meaning at the end
         while current_node is not None:   # O(n) loop through all of the list
             items.append(current_node.data) # O(1) only one step to do this
-            # Now the node is equal to the node.next to move to the next item
+            # Now the node is equal to the node.next to move to the next item, also, last step current_node.next points to None
             current_node = current_node.next  # O(1) only one step to do this
         return items   # O(1) only one step to do this
 
@@ -71,16 +72,18 @@ class LinkedList(object):
        
         # TODO: Loop through all nodes and count one for each
 
-        count = 0
-        # Set current node to point to head node, rememeber self.head points to a Node object, which has data and next
-        current_node = self.head
+        # count = 0
+        # # Set current node to point to head node, rememeber self.head points to a Node object, which has data and next
+        # current_node = self.head
 
-        # Iterate through all the list until current_node is not None, because if none then last item
-        while current_node is not None: # Meaning the head exists
-            current_node = current_node.next # This is only possible becauase not None, so must/can have .next property
-            count += 1
-        return count
+        # # Iterate through all the list until current_node is not None, because if none then last item
+        # while current_node is not None: # Meaning the head exists
+        #     current_node = current_node.next # This is only possible becauase not None, so must/can have .next property
+        #     count += 1
+        # return count
 
+        return self.count # Can just return self.count as alternate way of finding length
+        # Run Time(Best and Worst Case) = O(1) because just returning the count
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -96,13 +99,12 @@ class LinkedList(object):
         if self.tail is not None:
             # Appending node after tail, if tail exists, and tail currently points at None
             self.tail.next = new_node # Note! Can only do this if tail is NOT None, meaning it exists
-            self.tail = new_node # Then you set the self.tail to the newly last node, updating the tail
-
+            self.tail = new_node # Update the self.tail to the newly last node, updating the tail
+            self.count += 1
         else:
             self.head = new_node # If no tail then set the self.head to point to newly created Node object
             self.tail = new_node # And self.tail also equals this newly created node
-        
-
+            self.count += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -116,13 +118,13 @@ class LinkedList(object):
         new_node = Node(item)
 
         if self.head is not None:
-            new_node.next = self.head
-            self.head = new_node # Resets head to be this new node
-
+            new_node.next = self.head # Remember self.head is a Node object
+            self.head = new_node # Update head to be this new node
+            self.count += 1
         else:
             self.tail = new_node # Sets head to be this new node
             self.head = new_node # Sets head to be this new node
-
+            self.count += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -150,7 +152,6 @@ class LinkedList(object):
         """Run time(Worst): O(n) because have to go through the entire list"""
         """Run time(Best): O(1) because found on first instance"""
 
-
         current_node = self.head
 
         while current_node is not None:
@@ -158,9 +159,7 @@ class LinkedList(object):
                 current_node.data = new_item # Sets the current_node data to be the new stuff
                 return
             else:
-                current_node.current_node.next
-            
-
+                current_node.current_node.next # To change pointer to next node
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -185,26 +184,29 @@ class LinkedList(object):
             if current_node.data == item:
                 self.head = None # This to delete both the pointers of head and tail, because only have one
                 self.tail = None
+                self.count -= 1
             else:
                 raise ValueError('Item not found: {}'.format(item)) # If item is not in list
         
         else:
             while current_node is not None: # To traverse through list
+                # If the item found in list to be removed, then executed
                 if current_node.data == item:
-                    # If the item found in list to be removed, then executed
                     if previous_node is None: # To remove item at the head cause head doesn't have previous node
-                        self.head = current_node.next # Reset so head points to the next node
+                        self.head = current_node.next # Resets so head points to the node right after head
+                        self.count -= 1
                         # if current_node == self.tail: # To remove at the tail
                         #     self.tail = previous_node
                     # Removing item from tail, b/c tail.next points to None
                     elif current_node.next is None:
-                        previous_node.next = None # To delete previous node next pointer
-                        self.tail = previous_node # Reset tail to point to the previous node
-
-                    # Item to remove is not tail or head
+                        previous_node.next = None # Then delete previous node next pointer
+                        self.tail = previous_node # Update tail to point to the previous node
+                        self.count -= 1
+                    # To remove item that is not tail or head
                     else:
-                        previous_node.next = current_node.next # Set previous pointer next to current next
-
+                        previous_node.next = current_node.next # Update previous pointer next to current next
+                        current_node = None # To delete current node
+                        self.count -= 1
                     return # Finished deleting
                 # If item not yet found so moving to next node
                 else:
