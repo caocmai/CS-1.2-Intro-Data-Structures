@@ -19,7 +19,7 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
-        self.count = 0 # To find the length in another way
+        self.count = 0 # To find the list length in another way
 
         # Append given items
         if items is not None:
@@ -55,7 +55,6 @@ class LinkedList(object):
         """Return a boolean indicating whether this linked list is empty."""
         """Run time(Best and Worst): O(1) because only have to check once wether the head exists """
 
-
         # Checking wether the head exists
         if self.head is None:
             return True
@@ -65,9 +64,9 @@ class LinkedList(object):
         # return self.head is None
 
     def length(self):
-        """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?
-       
+        """Return the length of this linked list by traversing its nodes."""
+        # TODO: Running time: O(???) Why and under what conditions?
+       """
         Run time(Best and Worst): O(n) because have to go through all of the nodes to get the number of items in list"""
        
         # TODO: Loop through all nodes and count one for each
@@ -82,19 +81,20 @@ class LinkedList(object):
         #     count += 1
         # return count
 
-        return self.count # Can just return self.count as alternate way of finding length
+        # Can just return self.count as alternate way of finding length
+        return self.count 
         # Run Time(Best and Worst Case) = O(1) because just returning the count
 
     def append(self, item):
-        """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?
-        
+        """Insert the given item at the tail of this linked list."""
+        # TODO: Running time: O(???) Why and under what conditions?
+        """
         Run time(Best and Worst): O(1) because the tail can be accessed in one step"""
         
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
 
-        new_node = Node(item) # Create a new Node object with the spcified item
+        new_node = Node(item) # Create a new Node object with the specified item
 
         if self.tail is not None:
             # Appending node after tail, if tail exists, and tail currently points at None
@@ -107,10 +107,10 @@ class LinkedList(object):
             self.count += 1
 
     def prepend(self, item):
-        """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?
+        """Insert the given item at the head of this linked list."""
+        # TODO: Running time: O(???) Why and under what conditions?
         
-        Run time(Best and Worst): O(1) because like head, the head can be accessed in one step"""
+        """Run time(Best and Worst): O(1) because like head, the head can be accessed in one step"""
         
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
@@ -123,14 +123,15 @@ class LinkedList(object):
             self.count += 1
         else:
             self.tail = new_node # Sets head to be this new node
-            self.head = new_node # Sets head to be this new node
+            self.head = new_node # Sets tail to be this new node
             self.count += 1
 
     def find(self, quality):
-        """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?
-        
+        """Return an item from this linked list satisfying the given quality."""
+
+        # TODO: Best case running time: O(???) Why and under what conditions?
+        # TODO: Worst case running time: O(???) Why and under what conditions?
+        """
         Run time(Best Case): O(1), becuse if you let lucky you can find it running just once
         Run time(Worst Case): O(n), becuase you have to go every single one"""
         
@@ -147,7 +148,7 @@ class LinkedList(object):
 
         return None # To catch if item doesn't exist in list
 
-    def replace(self, to_replace_item, new_item):
+    def replace(self, list_item, new_item):
         """Replaces an item in the list with a new item"""
         """Run time(Worst): O(n) because have to go through the entire list"""
         """Run time(Best): O(1) because found on first instance"""
@@ -155,18 +156,18 @@ class LinkedList(object):
         current_node = self.head
 
         while current_node is not None:
-            if current_node.data == to_replace_item: # If the data in the node is found in list.
+            if current_node.data == list_item: # If the data in the node is found in list.
                 current_node.data = new_item # Sets the current_node data to be the new stuff
                 return
             else:
                 current_node.current_node.next # To change pointer to next node
 
     def delete(self, item):
-        """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
+        """Delete the given item from this linked list, or raise ValueError."""
+        """TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?
 
-        Run time(Best Case): O(1), becuse find it after the head pointer and delete it by running just once
+        Run time(Best Case): O(1), beacuse finds it after the head pointer, item can be deleted by running just once
         Run time(Worst Case): O(n), becuase you have to go every single one to find it and delete"""
         
         # TODO: Loop through all nodes to find one whose data matches given item
@@ -182,7 +183,7 @@ class LinkedList(object):
 
         elif self.head == self.tail: # If there is only one node in the list
             if current_node.data == item:
-                self.head = None # This to delete both the pointers of head and tail, because only have one
+                self.head = None # This to delete both the pointers of head and tail, because only have one node in entire list
                 self.tail = None
                 self.count -= 1
             else:
@@ -216,7 +217,7 @@ class LinkedList(object):
             raise ValueError('Item not found: {}'.format(item)) # To make sure the item is in the list after going through the list
         
 
-
+        
 def test_linked_list():
     ll = LinkedList()
     print('list: {}'.format(ll))
