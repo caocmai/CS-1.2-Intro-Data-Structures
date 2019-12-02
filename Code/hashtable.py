@@ -27,7 +27,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        Running time: O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
+        Running time(Worst and Best Cases): O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
         # Collect all keys in each bucket
 
         all_keys = []
@@ -39,7 +39,7 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        Running time: O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
+        Running time(Worst and Best Cases): O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
         # TODO: Loop through all buckets
         # TODO: Collect all values in each bucket
 
@@ -52,7 +52,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        Running time: O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
+        Running time(Worst and Best Cases): O(N^2) Because have to traverse the list of buckets and the list within each bucket"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -61,7 +61,9 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time(Worst Case): O(N^2) Because have to traverse the list of buckets and the list within each bucket
+        OR Running time(Best Case): O(1) Because only have to get the size from the class property"""
+
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
 
@@ -77,7 +79,9 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time(Worst Case): O(N) traverse all items in bucket
+        Running time(Best Case): O(1) when there is one item in bucket"""
+
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         for bucket in self.buckets:
@@ -88,7 +92,8 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time(Worst Case): O(N) traverse all items in bucket
+        Running time(Best Case): O(1) when there is one item in bucket"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, return value associated with given key
