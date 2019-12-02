@@ -56,17 +56,11 @@ class LinkedList(object):
         """Run time(Best and Worst): O(1) because only have to check once wether the head exists """
 
         # Checking wether the head exists
-        if self.head is None:
-            return True
-        else:
-            return False
-
-        # return self.head is None
+        return self.head is None
 
     def length(self):
-        """Return the length of this linked list by traversing its nodes."""
+        """Return the length of this linked list by traversing its nodes. 
         # TODO: Running time: O(???) Why and under what conditions?
-       """
         Run time(Best and Worst): O(n) because have to go through all of the nodes to get the number of items in list"""
        
         # TODO: Loop through all nodes and count one for each

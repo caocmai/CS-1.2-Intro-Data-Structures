@@ -9,6 +9,7 @@ class HashTable(object):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
         self.buckets = [LinkedList() for _ in range(init_size)]
+        self.size = 0
 
     def __str__(self):
         """Return a formatted string representation of this hash table."""
@@ -77,6 +78,20 @@ class HashTable(object):
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
+
+        key_exists = False
+
+        for bucket in self.buckets:
+            for k, v in bucket.items():
+                if k == key:
+                    key_exists = True
+                    bucket.delete((k, v))
+                    bucket.append((key,value))
+
+        if key_exists == False:
+            bucket.append((key, value))
+            self.size += 1
+
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
