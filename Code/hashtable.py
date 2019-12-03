@@ -128,11 +128,11 @@ class HashTable(object):
         bucket = self.buckets[self._bucket_index(key)]
 
         # for bucket in self.buckets:
-        for k, v in bucket.items():
-            if k == key:
+        for item_key, item_value in bucket.items():
+            if item_key == key:
                 key_exists = True
                 # Because if key is found in this case: tuple, so you need to delete it then add
-                bucket.delete((k, v))
+                bucket.delete((item_key, item_value))
                 bucket.append((key,value))
 
         if key_exists == False:
@@ -157,10 +157,10 @@ class HashTable(object):
         bucket = self.buckets[self._bucket_index(key)]
 
         # for bucket in self.buckets:
-        for k, v in bucket.items():
-            if k == key:
+        for item_key, item_value in bucket.items():
+            if item_key == key:
                 key_exists = True
-                bucket.delete((key, v))
+                bucket.delete((key, item_value))
                 self.size -= 1
 
         if key_exists == False:
