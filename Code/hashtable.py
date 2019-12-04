@@ -93,7 +93,7 @@ class HashTable(object):
 
         if bucket.find(lambda item: item[0] == key): # If item is found in the bucket
             return True
-        return False
+        return False # Item is not found in bucket
 
         # bucket = self.buckets[self._bucket_index(key)] # Finds the bucket
 
@@ -116,7 +116,7 @@ class HashTable(object):
 
         found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
 
-        if found_item:
+        if found_item: # If item is found, return the value of it, which locates at index 1
             return found_item[1]
         else:
             raise KeyError(f'Key not found: {key}')
@@ -183,6 +183,7 @@ class HashTable(object):
 
         found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
 
+        # If item found, delete it
         if found_item:
             bucket.delete(found_item)
             self.size -= 1
