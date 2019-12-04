@@ -95,6 +95,7 @@ class HashTable(object):
             return True
         return False # Item is not found in bucket
 
+        ## OR can do this with following code w/o using LinkedList find method
         # bucket = self.buckets[self._bucket_index(key)] # Finds the bucket
 
         # for item_key, item_value in bucket.items():
@@ -121,6 +122,7 @@ class HashTable(object):
         else:
             raise KeyError(f'Key not found: {key}')
 
+        ## OR can do this with following code w/o using LinkedList find method
         # bucket = self.buckets[self._bucket_index(key)]
 
         # for item_key, item_value in bucket.items():
@@ -151,6 +153,7 @@ class HashTable(object):
             bucket.append((key, value))
             self.size += 1
 
+        ## OR can do this with following code w/o using LinkedList find method
         # key_exists = False
 
         # bucket = self.buckets[self._bucket_index(key)]
@@ -191,8 +194,7 @@ class HashTable(object):
         else:
             raise KeyError("Key not found: {}".format(key))
 
-
-    
+        ## OR can do this with following code w/o using LinkedList find method
         # key_exists = False
         
         # # The logic is about the same as the other methods in this class
