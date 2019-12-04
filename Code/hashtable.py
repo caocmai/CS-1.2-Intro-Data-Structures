@@ -106,7 +106,7 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Best Case): O(1) When there is one item in bucket"""
+        Running time(Best Case): O(1) When there is one/first item in bucket"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, return value associated with given key
@@ -134,7 +134,7 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Best Case): O(1) When there is one item in bucket"""        
+        Running time(Best Case): O(1) When there is one/first item in bucket"""        
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
@@ -174,7 +174,7 @@ class HashTable(object):
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Best Case): O(1) When there is one item in bucket"""       
+        Running time(Best Case): O(1) When there is one/first item in bucket"""       
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
