@@ -71,12 +71,12 @@ class HashTable(object):
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
 
-        # count = 0
+        # total_count = 0
         # for bucket in self.buckets:
-        #     for item in bucket.items():
-        #         count += 1
+        #     items = bucket.length() # Use length method of linkedlist class
+        #     total_count += items
 
-        # return count 
+        # return total_count 
 
         # OR
         return self.size
@@ -88,13 +88,19 @@ class HashTable(object):
 
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
-        
+
         bucket = self.buckets[self._bucket_index(key)] # Finds the bucket
 
-        for item_key, item_value in bucket.items():
-            if item_key == key: # Can use == or is keyword
-                return True
+        if bucket.find(lambda item: item[0] == key): # If item is found in the bucket
+            return True
         return False
+
+        # bucket = self.buckets[self._bucket_index(key)] # Finds the bucket
+
+        # for item_key, item_value in bucket.items():
+        #     if item_key == key: # Can use == or 'is' keyword
+        #         return True
+        # return False
             
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
@@ -106,13 +112,22 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user get failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
 
-        bucket = self.buckets[self._bucket_index(key)]
+        bucket = self.buckets[self._bucket_index(key)] # Finds bucket
 
-        for item_key, item_value in bucket.items():
-            if item_key == key:
-                return item_value
+        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
 
-        raise KeyError(f'Key not found: {key}')
+        if found_item:
+            return found_item[1]
+        else:
+            raise KeyError(f'Key not found: {key}')
+
+        # bucket = self.buckets[self._bucket_index(key)]
+
+        # for item_key, item_value in bucket.items():
+        #     if item_key == key:
+        #         return item_value
+
+        # raise KeyError(f'Key not found: {key}')
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
@@ -123,21 +138,34 @@ class HashTable(object):
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
 
-        key_exists = False
+        bucket = self.buckets[self._bucket_index(key)] # Finds the bucket with given key
 
-        bucket = self.buckets[self._bucket_index(key)]
+        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
 
-        # for bucket in self.buckets:
-        for item_key, item_value in bucket.items():
-            if item_key == key:
-                key_exists = True
-                # Because if key is found in this case: tuple, so you need to delete it then add
-                bucket.delete((item_key, item_value))
-                bucket.append((key,value))
-
-        if key_exists == False:
+        if found_item:
+            bucket.delete((found_item[0], found_item[1])) # Same idea, since tuple must delete and then append
+            bucket.append((key, value))
+            # OR can use replace method
+            # bucket.replace(found_item, (key, value))
+        else:
             bucket.append((key, value))
             self.size += 1
+
+        # key_exists = False
+
+        # bucket = self.buckets[self._bucket_index(key)]
+
+        # # for bucket in self.buckets:
+        # for item_key, item_value in bucket.items():
+        #     if item_key == key:
+        #         key_exists = True
+        #         # Because if key is found in this case: tuple, so you need to delete it then add
+        #         bucket.delete((item_key, item_value))
+        #         bucket.append((key,value))
+
+        # if key_exists == False:
+        #     bucket.append((key, value))
+        #     self.size += 1
 
 
     def delete(self, key):
@@ -150,21 +178,34 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
 
-        key_exists = False
-        
-        # The logic is about the same as the other methods in this class
-        # This finds the bucket that the item is in
-        bucket = self.buckets[self._bucket_index(key)]
 
-        # for bucket in self.buckets:
-        for item_key, item_value in bucket.items():
-            if item_key == key:
-                key_exists = True
-                bucket.delete((key, item_value))
-                self.size -= 1
+        bucket = self.buckets[self._bucket_index(key)] # Finds the bucket with given key
 
-        if key_exists == False:
+        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
+
+        if found_item:
+            bucket.delete(found_item)
+            self.size -= 1
+        else:
             raise KeyError("Key not found: {}".format(key))
+
+
+    
+        # key_exists = False
+        
+        # # The logic is about the same as the other methods in this class
+        # # This finds the bucket that the item is in
+        # bucket = self.buckets[self._bucket_index(key)]
+
+        # # for bucket in self.buckets:
+        # for item_key, item_value in bucket.items():
+        #     if item_key == key:
+        #         key_exists = True
+        #         bucket.delete((key, item_value))
+        #         self.size -= 1
+
+        # if key_exists == False:
+        #     raise KeyError("Key not found: {}".format(key))
 
 def test_hash_table():
     ht = HashTable()
