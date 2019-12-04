@@ -27,7 +27,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        Running time(Worst Case): O(N) Because each bucket has 1 itme
+        Running time(Best Case): O(N) Because each bucket has 1 itme
         Running time(Average Case): O(N) Because have to traverse the list of buckets and the items within each bucket"""
 
         # Collect all keys in each bucket
@@ -41,7 +41,7 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        Running time(Worst Case): O(N) Because each bucket has 1 item
+        Running time(Best Case): O(N) Because each bucket has 1 item
         Running time(Average Case): O(N) Because have to traverse the list of buckets and the items within each bucket"""        
         # TODO: Loop through all buckets
         # TODO: Collect all values in each bucket
@@ -55,7 +55,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        Running time(Worst Case): O(N) or O(b*L) Because each bucket has 1 item
+        Running time(Best Case): O(N) or O(b*L) Because each bucket has 1 item
         Running time(Average Case): O(N) Because each bucket has many items""" 
         # Collect all pairs of key-value entries in each bucket
         all_items = []
@@ -65,7 +65,7 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        Running time(Worst Case): O(N) or O(b*L) Because have to loop through the items in buckets
+        Running time(Average Case): O(N) or O(b*L) Because have to loop through the items in buckets
         OR Running time(Best Case): O(1) Because only have to get the size from the class property"""
 
         # TODO: Loop through all buckets
@@ -83,8 +83,8 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        Running time(Worst Case): O(L) or O(n/b) When each bucket has multiple items
-        Running time(Average Case): O(1) When each bucket has only 1 item"""
+        Running time(Average Case): O(L) or O(n/b) When each bucket has multiple items
+        Running time(Best Case): O(1) When each bucket has only 1 item"""
 
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
@@ -105,8 +105,8 @@ class HashTable(object):
             
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        Running time(Worst Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Average Case): O(1) When there is one item in bucket"""
+        Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
+        Running time(Best Case): O(1) When there is one item in bucket"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, return value associated with given key
@@ -133,8 +133,8 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        Running time(Worst Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Average Case): O(1) When there is one item in bucket"""        
+        Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
+        Running time(Best Case): O(1) When there is one item in bucket"""        
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
@@ -173,8 +173,8 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        Running time(Worst Case): O(L) or O(n/b) When there are multiple items in a bucket
-        Running time(Average Case): O(1) When there is one item in bucket"""       
+        Running time(Average Case): O(L) or O(n/b) When there are multiple items in a bucket
+        Running time(Best Case): O(1) When there is one item in bucket"""       
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
