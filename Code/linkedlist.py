@@ -47,7 +47,7 @@ class LinkedList(object):
         # Loop until node is None, meaning at the end
         while current_node is not None:   # O(n) loop through all of the list
             items.append(current_node.data) # O(1) only one step to do this
-            # Now the node is equal to the node.next to move to the next item, also, last step current_node.next points to None
+            # Now the node is equal to the node.next to move to the next item, also, last step current_node points to None
             current_node = current_node.next  # O(1) only one step to do this
         return items   # O(1) only one step to do this
 
@@ -113,11 +113,11 @@ class LinkedList(object):
 
         if self.head is not None:
             new_node.next = self.head # Remember self.head is a Node object
-            self.head = new_node # Update head to be this new node
+            self.head = new_node # Updates head to be this new node
             self.size += 1
         else:
-            self.tail = new_node # Sets head to be this new node
-            self.head = new_node # Sets tail to be this new node
+            self.tail = new_node # Sets/assigns head to be this new node
+            self.head = new_node # Sets/assigns tail to be this new node
             self.size += 1
 
     def find(self, quality):
@@ -134,7 +134,8 @@ class LinkedList(object):
 
         current_node = self.head
 
-        while current_node is not None: # Check make sure there's a list
+        # Check make sure there's a list, when current node changes to tail.next that equals to None, while loop terminates
+        while current_node is not None: 
             if quality(current_node.data) == True:
                 return current_node.data
             else:
@@ -181,10 +182,10 @@ class LinkedList(object):
                 self.tail = None
                 self.size -= 1
             else:
-                raise ValueError('Item not found: {}'.format(item)) # If item is not in list
+                raise ValueError('Item not found: {}'.format(item)) # If item is not in one item list
         
         else:
-            while current_node is not None: # To traverse through list
+            while current_node is not None: # To traverse through list, tail(end) points to None
                 # If the item found in list to be removed, then executed
                 if current_node.data == item:
                     if previous_node is None: # To remove item at the head cause head doesn't have previous node
@@ -192,15 +193,15 @@ class LinkedList(object):
                         self.size -= 1
                         # if current_node == self.tail: # To remove at the tail
                         #     self.tail = previous_node
-                    # Removing item from tail, b/c tail.next points to None
+                    # Removing item from tail(current_node), b/c tail.next points to None
                     elif current_node.next is None:
-                        previous_node.next = None # Then delete previous node next pointer
+                        previous_node.next = None # Then deletes previous node's next pointer
                         self.tail = previous_node # Update tail to point to the previous node
                         self.size -= 1
                     # To remove item that is not tail or head
                     else:
-                        previous_node.next = current_node.next # Update previous pointer next to current next
-                        current_node = None # To delete current node
+                        previous_node.next = current_node.next # Update previous pointer's next to current's next
+                        current_node = None # To delete current node, when something = None is delete
                         self.size -= 1
                     return # Finished deleting
                 # If item not yet found so moving to next node

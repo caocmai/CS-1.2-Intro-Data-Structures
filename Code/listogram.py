@@ -24,7 +24,7 @@ class Listogram(list):
 
         # This is for tuple
         # self.tokens += count 
-        # for index, word_in_list  in enumerate(self):
+        # for index, word_in_list in enumerate(self):
         #     if word_in_list[0] == word:
         #         self[index] = (word, word_in_list[1] + count)
         #         break
