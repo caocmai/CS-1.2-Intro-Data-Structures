@@ -89,7 +89,7 @@ class HashTable(object):
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
 
-        bucket = self.buckets[self._bucket_index(key)] # Finds the bucket
+        bucket = self.buckets[self._bucket_index(key)] # Finds the bucket (or it's index)
 
         if bucket.find(lambda item: item[0] == key): # If item is found in the bucket
             return True
