@@ -115,7 +115,7 @@ class HashTable(object):
 
         bucket = self.buckets[self._bucket_index(key)] # Finds bucket
 
-        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
+        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to found_item
 
         if found_item: # If item is found, return the value of it, which locates at index 1
             return found_item[1]
@@ -147,7 +147,7 @@ class HashTable(object):
         if found_item:
             bucket.delete((found_item[0], found_item[1])) # Same idea, since tuple must delete and then append
             bucket.append((key, value))
-            # OR can use replace method
+            # OR can use replace function
             # bucket.replace(found_item, (key, value))
         else:
             bucket.append((key, value))
@@ -183,18 +183,18 @@ class HashTable(object):
 
         # Run Time: O(1)
         bucket = self.buckets[self._bucket_index(key)] # Finds the bucket with given key
-        # Run Time: O(L) b/c on average it's (num of items)/(num of buckets) OR O(1), if only one item in bucket
-        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
+        # Run Time: O(L) b/c, on average, it's L = (total num of items)/(total num of buckets) OR O(1), if only one/first item in the bucket
+        found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to found_item
 
         # Run Time: O(1)
-        # If item found, delete it
+        # If item found, delete it, else raise error of not found
         if found_item:
             bucket.delete(found_item)
             self.size -= 1
         else:
             raise KeyError("Key not found: {}".format(key))
 
-        ## OR can do this with following code w/o using LinkedList find method
+        ## OR can do this with following code w/o using LinkedList's find method
         # key_exists = False
         
         # # The logic is about the same as the other methods in this class

@@ -40,7 +40,7 @@ class Markov():
 
 
 if __name__ == '__main__':
-    markov = Markov('test.txt')
+    markov = Markov('test3.txt')
     print(markov.walk_through(10))
 
 

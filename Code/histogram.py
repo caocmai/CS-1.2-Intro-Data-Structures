@@ -8,12 +8,33 @@ import sys
 #         file_content.extend(line.split())
 
 # Or can write as function
+# def open_file(text):
+#   f_handle = open(text, "r")
+#   file_content = []
+  
+#   for line in f_handle:
+#     file_content.extend(line.split())
+#   return file_content
+
+# test1 = open_file("test3.txt")
+# print(test1)
+# print("\n\n")
+
+# Added filter to parse the text
 def open_file(text):
   f_handle = open(text, "r")
   file_content = []
+
+  # With help of Genji
+  unwanted_punctuation_table = dict.fromkeys(map(ord, '\n\r“”"‘’_…:*!,?â€œ'), None)
+  
   for line in f_handle:
-    file_content.extend(line.split())
+    parsed_text = line.translate(str.maketrans(unwanted_punctuation_table)).lower()
+    file_content.extend(parsed_text.split())
   return file_content
+
+# test2 = open_file2("test3.txt")
+# print(test2)
 
 def histogram(file_content):
     '''Get histogram with given content as input'''

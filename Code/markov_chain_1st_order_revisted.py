@@ -1,10 +1,9 @@
 from histogram import open_file, histogram
 import random
 
-content = open_file("test.txt")
-histogram = histogram(content)
 
-def generate_markov(data):
+
+def generate_markov_1st_order(data):
     markov_model = {}
 
     for i in range(0, len(data)):
@@ -18,8 +17,8 @@ def generate_markov(data):
 
     return markov_model
 
-
-def normalize_markov(markov, histogram):
+# Only need histogram if wanting to noramlize the markov chain
+def normalize_markov_1st_order(markov, histogram):
     for word in markov:
         for next_word in markov[word]:
             markov[word][next_word] = markov[word][next_word] / histogram[word]
@@ -80,43 +79,21 @@ def markov_sample_histogram(markov, next_word=None):
                 return key
 
 
-marv = generate_markov(content)
 
-# marv_normalized = normalize_markov(marv, histogram)
+### Testing it out, WORKS
+if __name__ == '__main__':
+    content = open_file("test.txt")
+    marv = generate_markov_1st_order(content)
+    print(marv)
+    i = 10
+    markov_example = markov_sample_histogram(marv)
+    sentence = ''
 
-# sentence = ''
-# markov_example = markov_sample(marv_normalized)
+    while i > 0: 
+        markov_example2 = markov_sample_histogram(marv, markov_example)
+        sentence += " " + markov_example2
+        markov_example = markov_example2
+        # print(i)
+        i -= 1
 
-# markov_example2 = markov_sample(marv_normalized, markov_example)
-
-# print((markov_example))
-# print(markov_example2)
-
-
-# i = 10
-# markov_example = markov_sample(marv_normalized)
-# sentence = ''
-
-# while i > 0: 
-#     markov_example2 = markov_sample(marv_normalized, markov_example)
-#     sentence += " " + markov_example2
-#     markov_example = markov_example2
-#     print(i)
-#     i -= 1
-
-# print(sentence)
-
-### Testing it out
-print(marv)
-i = 10
-markov_example = markov_sample_histogram(marv)
-sentence = ''
-
-while i > 0: 
-    markov_example2 = markov_sample_histogram(marv, markov_example)
-    sentence += " " + markov_example2
-    markov_example = markov_example2
-    # print(i)
-    i -= 1
-
-print(sentence)
+    print(sentence)
