@@ -13,7 +13,7 @@ def open_file(text):
   file_content = []
 
   # With help of Genji
-  unwanted_punctuations = dict.fromkeys(map(ord, '\n\r“”")(‘’_…:*!-;,.?â€œ'), " ")
+  unwanted_punctuations = dict.fromkeys(map(ord, '\n\r“”")(‘’_…:*!-;,.?â€œ'), " ") # Change unwated puncuations to space " " 
   
   for line in f_handle:
     parsed_text = line.translate(str.maketrans(unwanted_punctuations)).lower()

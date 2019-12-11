@@ -14,10 +14,12 @@ class Markov(dict):
     def markov_chain(self, content, order):
         """Creates a markov chain with specified order"""
         for i in range(len(content) - order):
-            if tuple(content[i : i + order]) not in self.keys(): # Markov is a dictionary
-                self[tuple(content[i : i + order])] = []
+            if tuple(content[i: i+order]) not in self.keys(): # Markov is a dictionary
+                self[tuple(content[i: i+order])] = []
                 self.types += 1
-            self[tuple(content[i : i + order])].append(tuple(content[i + 1 : i + order + 1]))
+
+            self[tuple(content[i: i+order])].append(tuple(content[i+1 : i+order+1]))
+        
         for key in self.keys():
             self[key] = Dictogram(self[key])
         
