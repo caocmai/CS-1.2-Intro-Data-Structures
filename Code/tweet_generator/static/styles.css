@@ -30,3 +30,7 @@ font-size:100px;
 color:#889c0b;
   
 }
+
+.navbar-text {
+    margin: 0 auto;
+}

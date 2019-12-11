@@ -14,7 +14,7 @@ class Markov(dict):
     def markov_chain(self, content, order):
         """Creates a markov chain with specified order"""
         for i in range(len(content) - order):
-            if tuple(content[i : i + order]) not in self.keys(): # Markov is a dictionary
+            if tuple(content[i : i + order]) not in self.keys():
                 self[tuple(content[i : i + order])] = []
                 self.types += 1
             self[tuple(content[i : i + order])].append(tuple(content[i + 1 : i + order + 1]))
@@ -27,7 +27,7 @@ class Markov(dict):
         sentence = list(start)
 
         for _ in range(length - self.order):
-            next_tuple = self[start].sample() # Use sample method from Dictogram class to get next
+            next_tuple = self[start].sample()
             sentence.append(next_tuple[self.order - 1])
             start = next_tuple
 
@@ -35,8 +35,8 @@ class Markov(dict):
 
 
 if __name__ == '__main__':
-    words = open_file("test3.txt")
-    # words = ['i', 'went', 'left', 'you', 'went', 'right', 'i','went','left', 'i', 'went', 'right']
+    # words = open_file("test3.txt")
+    words = ['i', 'like', 'cats', 'and', 'you', 'like', 'cats', 'i', 'like', 'dogs', 'but', 'you', 'hate', 'dogs']
     markov_chain_2nd_order = Markov(words, 2)
     assert markov_chain_2nd_order == {
         ('i' , 'like'): {('like', 'cats'): 1, ('like', 'dogs'): 1}, 

@@ -26,10 +26,10 @@ def open_file(text):
   file_content = []
 
   # With help of Genji
-  unwanted_punctuation_table = dict.fromkeys(map(ord, '\n\r“”"‘’_…:*!,?â€œ'), None)
+  unwanted_punctuations = dict.fromkeys(map(ord, '\n\r“”")(‘’_…:*!-;,.?â€œ'), " ") # Can replace with " " or replace with None
   
   for line in f_handle:
-    parsed_text = line.translate(str.maketrans(unwanted_punctuation_table)).lower()
+    parsed_text = line.translate(str.maketrans(unwanted_punctuations)).lower()
     file_content.extend(parsed_text.split())
   return file_content
 

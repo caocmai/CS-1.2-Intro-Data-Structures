@@ -145,7 +145,7 @@ class HashTable(object):
         found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to item
 
         if found_item:
-            bucket.delete((found_item[0], found_item[1])) # Same idea, since tuple must delete and then append
+            bucket.delete((found_item[0], found_item[1])) # Since tuple must delete and then append
             bucket.append((key, value))
             # OR can use replace function
             # bucket.replace(found_item, (key, value))
@@ -187,7 +187,7 @@ class HashTable(object):
         found_item = bucket.find(lambda item: item[0] == key) # Finds the item in the bucket and assigns it to found_item
 
         # Run Time: O(1)
-        # If item found, delete it, else raise error of not found
+        # If item found, delete it, else raise error if not found
         if found_item:
             bucket.delete(found_item)
             self.size -= 1

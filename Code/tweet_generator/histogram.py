@@ -11,8 +11,13 @@ import sys
 def open_file(text):
   f_handle = open(text, "r")
   file_content = []
+
+  # With help of Genji
+  unwanted_punctuations = dict.fromkeys(map(ord, '\n\r“”")(‘’_…:*!-;,.?â€œ'), " ")
+  
   for line in f_handle:
-    file_content.extend(line.split())
+    parsed_text = line.translate(str.maketrans(unwanted_punctuations)).lower()
+    file_content.extend(parsed_text.split())
   return file_content
 
 def histogram(file_content):
