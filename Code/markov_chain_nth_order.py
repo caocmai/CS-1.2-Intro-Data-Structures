@@ -38,18 +38,18 @@ if __name__ == '__main__':
     # Testing 2nd order markov
     content = open_file("test3.txt")
     # words = ['i', 'went', 'left', 'you', 'went', 'right', 'i','went','left', 'i', 'went', 'right']
-    markov_chain_2nd_order = Markov(content, 2)
-    assert markov_chain_2nd_order == {
-        ('i' , 'like'): {('like', 'cats'): 1, ('like', 'dogs'): 1}, 
-        ('like', 'cats'): {('cats', 'and'): 1, ('cats', 'i'): 1},
-        ('cats', 'and'): {('and', 'you'): 1},
-        ('and', 'you'): {('you', 'like'): 1},
-        ('you', 'like'): {('like', 'cats'): 1},
-        ('cats', 'i'): {('i', 'like'): 1},
-        ('like', 'dogs'): {('dogs', 'but'): 1},
-        ('dogs', 'but'): {('but', 'you'): 1},
-        ('but', 'you'): {('you', 'hate'): 1},
-        ('you' , 'hate'): {('hate', 'dogs'): 1}
-        }
+    markov_chain_2nd_order = Markov(content, 4)
+    # assert markov_chain_2nd_order == {
+    #     ('i' , 'like'): {('like', 'cats'): 1, ('like', 'dogs'): 1}, 
+    #     ('like', 'cats'): {('cats', 'and'): 1, ('cats', 'i'): 1},
+    #     ('cats', 'and'): {('and', 'you'): 1},
+    #     ('and', 'you'): {('you', 'like'): 1},
+    #     ('you', 'like'): {('like', 'cats'): 1},
+    #     ('cats', 'i'): {('i', 'like'): 1},
+    #     ('like', 'dogs'): {('dogs', 'but'): 1},
+    #     ('dogs', 'but'): {('but', 'you'): 1},
+    #     ('but', 'you'): {('you', 'hate'): 1},
+    #     ('you' , 'hate'): {('hate', 'dogs'): 1}
+    #     }
     print(markov_chain_2nd_order)
     print(markov_chain_2nd_order.get_sentence(10))
