@@ -1,8 +1,7 @@
 from histogram import open_file, histogram
 import random
 
-
-
+# This is another way which to code out 1st order markov chain
 def generate_markov_1st_order(data):
     markov_model = {}
 
@@ -80,7 +79,7 @@ def markov_sample_histogram(markov, next_word=None):
 
 
 
-### Testing it out, WORKS
+### Testing(does not use the normalized markov and just uses regular markov chain)
 if __name__ == '__main__':
     content = open_file("test.txt")
     marv = generate_markov_1st_order(content)
