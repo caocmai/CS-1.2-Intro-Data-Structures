@@ -22,16 +22,6 @@ class Listogram(list):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
 
-        # This is for tuple
-        # self.tokens += count 
-        # for index, word_in_list in enumerate(self):
-        #     if word_in_list[0] == word:
-        #         self[index] = (word, word_in_list[1] + count)
-        #         break
-        #     else:
-        #         self.append((word, count))
-        #         self.types += 1
-
         for index, stuff in enumerate(self):
             if stuff[0] == word:
                 stuff[1] += count
@@ -41,20 +31,6 @@ class Listogram(list):
             self.append([word, count])
             self.types += 1
             self.tokens += count
-
-
-        # for index, word_in_list in enumerate(self):
-        #     if word_in_list[0] == word:
-        #         word_in_list[1] += count
-        #         self.tokens += count
-        #         break
-        # else:
-        #     # Append the new word with count if it does not exist, and update tokens and types
-        #     self.append([word, count])
-        #     self.tokens += count
-        #     self.types = len(self)
-
-
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
@@ -66,12 +42,6 @@ class Listogram(list):
         else: 
             return 0
 
-        # # The following also works
-        # for stuff in self:
-        #     if stuff[0] == word:
-        #         return stuff[1]
-        # return 0
-
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
@@ -80,12 +50,6 @@ class Listogram(list):
                 return True
         else:
             return False
-
-        # for word_in_list in self:
-        #     if word == word_in_list[0]:
-        #         return True
-        
-        # return False
 
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
@@ -108,8 +72,6 @@ class Listogram(list):
             if rand_num - word[1] <= 0:
                 return word[0]
             rand_num -= word[1]
-
-
 
 
 def print_histogram(word_list):
